@@ -483,6 +483,29 @@ namespace objAreaEditor
             mFrame = new Rectangle(0, 0, 0, 0);
         }
 
+        private void listImage_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void listImage_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] fileNames =
+        (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            int ihandle;
+            foreach (var fileName in fileNames)
+            {
+                ihandle = DX.LoadGraph(fileName);
+                if (ihandle >= 0)
+                    mImages.Insert(0, new Image { name = fileName, handle = ihandle, x = 0, y = 0 });
+            }
+        
+            syncImageList();
+        }
+
 
         // タブの項目を更新
         private void syncTab(int mode)

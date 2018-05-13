@@ -88,6 +88,7 @@
             // 
             // listImage
             // 
+            this.listImage.AllowDrop = true;
             this.listImage.FormattingEnabled = true;
             this.listImage.ItemHeight = 12;
             this.listImage.Location = new System.Drawing.Point(12, 577);
@@ -95,6 +96,8 @@
             this.listImage.Size = new System.Drawing.Size(380, 88);
             this.listImage.TabIndex = 1;
             this.listImage.SelectedIndexChanged += new System.EventHandler(this.listImage_SelectedIndexChanged);
+            this.listImage.DragDrop += new System.Windows.Forms.DragEventHandler(this.listImage_DragDrop);
+            this.listImage.DragEnter += new System.Windows.Forms.DragEventHandler(this.listImage_DragEnter);
             // 
             // listArea
             // 
